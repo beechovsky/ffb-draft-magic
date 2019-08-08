@@ -50,7 +50,7 @@ module.exports = {
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
-    assetsPublicPath: '/ffb-draft-magic-vue',
+    assetsPublicPath: 'ffb-draft-magic-vue',
 
     /**
      * Source Maps
