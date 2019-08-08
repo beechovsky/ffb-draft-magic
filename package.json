@@ -11,7 +11,7 @@
     "test": "npm run unit",
     "lint": "eslint --ext .js,.vue src test/unit",
     "build": "node build/build.js",
-    "deploy": "npm run build; push-dir --dir=dist --branch=gh-pages --clean"
+    "deploy": "npm run build; push-dir --dir=dist --branch=gh-pages --clean --allow-unclean"
   },
   "dependencies": {
     "bootstrap-vue": "^2.0.0-rc.11",
