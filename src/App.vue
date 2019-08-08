@@ -124,7 +124,7 @@
           </tbody>
         </table>
       </div>
-      <div v-if="this.drafted.length > 0" class="child drafted">
+      <div class="child drafted">
         <th>
           <tr class="orange">
             Drafted

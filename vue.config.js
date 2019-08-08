@@ -1,1 +1,3 @@
-module.exports = { baseUrl: ‘/ffb-draft-magic/’ }
+module.exports = {
+  baseUrl: ‘/ffb-draft-magic/’
+}
