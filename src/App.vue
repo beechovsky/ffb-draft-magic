@@ -356,9 +356,10 @@ export default {
   display:block;
   overflow:auto;
   height:300px;
+  width: 250px;
 }
 .posTable tbody tr td:first-child {
-  width: 80%;
+  width: 90%;
 }
 .search {
   display: flex;
@@ -368,11 +369,11 @@ export default {
   min-height: 100px;
 }
 table, td {
+  border: 1px solid black;
   border-collapse: collapse;
   background-color: #ffffff; /* keep this in case the page bg color is changed */
 }
 td {
-  border: 1px solid black;
   padding: 1px 2px 1px 2px;
 }
 tr:hover {
