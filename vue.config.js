@@ -1,3 +1,3 @@
 module.exports = {
-  baseUrl: ‘/ffb-draft-magic/’
+  publicPath: ‘/ffb-draft-magic/’
 }
