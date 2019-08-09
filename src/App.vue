@@ -127,7 +127,7 @@
         <table class="draftedTable">
           <tbody>
             <!-- eslint-disable-next-line -->
-            <tr v-for="(row, index) in this.drafted" @click="putBack(row, index)" class="clickable">
+            <tr v-for="(row, index) in mergeSort(this.drafted)" @click="putBack(row, index)" class="clickable">
               <!-- eslint-disable-next-line -->
               <td v-for="name in row.split(',').splice(2, 1)">{{ name }}</td>
             </tr>
