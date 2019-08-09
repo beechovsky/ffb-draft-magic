@@ -6,17 +6,11 @@
         <br>
         <h1><b>FFB DraftMagic© by <a href="https://github.com/beechovsky/ffb-draft-magic-vue" target="_blank">Jeff Bucklew</a></b></h1>
         <h3><i>Inspired by <a href="https://jayzheng.com/ff/" target="_blank">Jay Zheng's Draft Aid</a></i></h3>
-        <!-- <h3>Steps to draft wizardry:</h3>
-        <h3>Download a custom rankings CSV (<i>NOT</i> a cheatsheet) from <a href="https://www.fantasypros.com/nfl/rankings/consensus-cheatsheets.php" target="_blank">Fantasy Pros</a>.</h3>
-        <h3>Upload it below.</h3>
-        <h3>Click on a player to remove them from Rankings as they are drafted.</h3>
-        <h3>If you clicked by accident, click that player on the Drafted table to return them.</h3> -->
         <br>
       </header>
     </section>
     <br>
     <upload v-if="this.showUpload === true" @load="setRows" id="uploadButton" class="visible"></upload>
-    <br>
     <br>
     <div class="search">
       <div v-if="this.rankings.length > 0">
@@ -114,7 +108,7 @@
             Tight Ends
           </tr>
         </th>
-        <table class="posTable" style="width: 100%">
+        <table class="posTable">
           <tbody>
             <!-- eslint-disable-next-line -->
             <tr v-for="(row, index) in mergeSort(teList)" @click="hideRow(row, index, false)" class="clickable">
@@ -130,7 +124,7 @@
             Drafted
           </tr>
         </th>
-        <table>
+        <table class="draftedTable">
           <tbody>
             <!-- eslint-disable-next-line -->
             <tr v-for="(row, index) in this.drafted" @click="putBack(row, index)" class="clickable">
@@ -244,6 +238,7 @@ export default {
       this.rankings.splice(0, 0, row)
       this.drafted.splice(index, 1)
     },
+    // mergeSort keeps all of the tables ordered properly after removal and returns
     mergeSort (arr) {
       if (arr.length < 2) {
         return arr
@@ -309,7 +304,7 @@ export default {
   margin: 1em;
 }
 .child rankings {
-  flex: 2 2 content;
+  flex: 2 2 auto;
 }
 .child rbs {
   flex: 1; /* equivalent of flex: 1 1 auto */
@@ -330,15 +325,22 @@ export default {
 .rankingsTable {
   display: block;
   height: 1000px;
+  overflow-y: hidden;
 }
 .posTable {
-  display:block;
-  overflow:auto;
-  height:300px;
+  display: block;
+  overflow: auto;
+  height: 300px;
+  width: 250px;
+}
+.draftedTable {
   width: 250px;
 }
 /* account for gigantic names */
 .posTable tbody tr td:first-child {
+  width: 90%;
+}
+.draftedTable tbody tr td:first-child {
   width: 90%;
 }
 .search {
@@ -353,9 +355,9 @@ table, tr, td {
   border-collapse: collapse;
   background-color: #ffffff; /* keep this in case the page bg color is changed */
 }
-th {
+/* th {
   padding: 1px 2px 1px 2px;
-}
+} */
 td {
   padding: 1px 2px 1px 2px;
 }
