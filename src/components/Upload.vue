@@ -1,6 +1,6 @@
 <template>
   <label class='upload-button'>
-    <h1>Upload Rankings CSV</h1>
+    <h1>Upload FantasyPros Rankings CSV</h1>
     <input type='file' @change='loadTextFromFile'>
   </label>
 </template>
