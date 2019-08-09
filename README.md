@@ -1,4 +1,4 @@
-# ffb-draft-magic-vue
+# ffb-draft-magic
 
 > An FFB Draft Aid In Vue
 
