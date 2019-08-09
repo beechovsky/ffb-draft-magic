@@ -4,7 +4,7 @@
     <section class="hero">
       <header>
         <br>
-        <h1><b>FFB DraftMagic© by <a href="https://github.com/beechovsky/ffb-draft-magic-vue" target="_blank">Jeff Bucklew</a></b></h1>
+        <h1><b>FFB DraftMagic</b></h1>
         <h3><i>Inspired by <a href="https://jayzheng.com/ff/" target="_blank">Jay Zheng's Draft Aid</a></i></h3>
         <br>
       </header>
@@ -129,7 +129,7 @@
             <!-- eslint-disable-next-line -->
             <tr v-for="(row, index) in this.drafted" @click="putBack(row, index)" class="clickable">
               <!-- eslint-disable-next-line -->
-              <td v-for="name in row.split(',').splice(2, 1)">{{ name }}</td><td v-for="pos in row.split(',').splice(4, 1)">{{ pos }}</td>
+              <td v-for="name in row.split(',').splice(2, 1)">{{ name }}</td>
             </tr>
           </tbody>
         </table>
@@ -153,7 +153,7 @@ export default {
   }),
   computed: {
     searchList () {
-      if (this.search.length > 3) { // hacky way of keeping results table from displaying persistently and limiting the size of the results eventually displayed
+      if (this.search.length > 3) { // hacky way of keeping results table from displaying persistently and limiting the size of the results table displayed
         return this.rankings.filter(player => {
           return player.toLowerCase().includes(this.search.toLowerCase())
         })
@@ -210,7 +210,7 @@ export default {
       this.columnHeaders.splice(1, 1) // remove Tier column
       this.columnHeaders.splice(1, 1) // remove WISD column
       // avg and std dev columns provide the data of both columns removed below
-      // NOTE: Removing these requires removing the data in the template above. This is still wonky and should be parsed somewhere else.
+      // NOTE: Removing these requires removing the data in the template above. This is still wonky and should probably be parsed somewhere else.
       this.columnHeaders.splice(5, 1) // remove Best column
       this.columnHeaders.splice(5, 1) // remove Worst column
       this.columnHeaders.splice(1, 1, 'Name') // rename FP's dumb column name 'Overall'
@@ -321,6 +321,7 @@ export default {
   border: none;
   padding: 0 0 0 5px;
   color: orange;
+  font-weight: bold;
 }
 .rankingsTable {
   display: block;
@@ -340,9 +341,9 @@ export default {
 .posTable tbody tr td:first-child {
   width: 90%;
 }
-.draftedTable tbody tr td:first-child {
+/* .draftedTable tbody tr td:first-child {
   width: 90%;
-}
+} */
 .search {
   display: flex;
   justify-content: center;
@@ -355,9 +356,9 @@ table, tr, td {
   border-collapse: collapse;
   background-color: #ffffff; /* keep this in case the page bg color is changed */
 }
-/* th {
-  padding: 1px 2px 1px 2px;
-} */
+th {
+  font-weight: normal;
+}
 td {
   padding: 1px 2px 1px 2px;
 }
