@@ -57,7 +57,7 @@
             <!-- eslint-disable-next-line -->
             <tr v-for="(row, index) in mergeSort(this.rankings).splice(1, this.rankings.length)" @click="hideRow(row, index, true)" class="clickable">
               <!-- eslint-disable-next-line -->
-              <td v-for="rank in row.split(',').splice(0, 1)">{{ rank }}</td><td v-for="columnData in row.split(',').splice(2, colCount)">{{ columnData }}</td>
+              <td v-for="rank in row.split(',').splice(0, 1)">{{ rank }}</td><td v-for="columnData1 in row.split(',').splice(2, 4)">{{ columnData1 }}</td><td v-for="columnData2 in row.split(',').splice(8, colCount)">{{ columnData2 }}</td>
             </tr>
           </tbody>
         </table>
@@ -215,6 +215,10 @@ export default {
       this.columnHeaders = headerString.split(',')
       this.columnHeaders.splice(1, 1) // remove Tier column
       this.columnHeaders.splice(1, 1) // remove WISD column
+      // avg and std dev columns provide the data of both columns removed below
+      // NOTE: Removing these requires removing the data in the template above. This is still wonky and should be parsed somewhere else.
+      this.columnHeaders.splice(5, 1) // remove Best column
+      this.columnHeaders.splice(5, 1) // remove Worst column
       this.columnHeaders.splice(1, 1, 'Name') // rename FP's dumb column name 'Overall'
       this.colCount = this.columnHeaders.length
     },
@@ -282,10 +286,6 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  /* background-color: #A8A8A8; */
-}
-* {
-  box-sizing: border-box;
 }
 .clickable {
   cursor: pointer;
@@ -297,19 +297,19 @@ export default {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  color: white;
+  color: white; /* text color */
 }
 /* flex */
 .parent {
   display: flex;
   flex: wrap;
-  justify-content: space-evenly;
+  justify-content: center;
 }
 .child {
-  margin: .5%;
+  margin: 1em;
 }
 .child rankings {
-  flex: 2 2 auto;
+  flex: 2 2 content;
 }
 .child rbs {
   flex: 1; /* equivalent of flex: 1 1 auto */
@@ -317,7 +317,7 @@ export default {
 .child wrs {
   flex: 1;
 }
-/* NOTE: no child class for QB & TE because they share teh width of the tables above them */
+/* NOTE: no child class for QB & TE because they share the width of the tables above them */
 
 .child drafted {
   flex: 1;
@@ -327,30 +327,9 @@ export default {
   padding: 0 0 0 5px;
   color: orange;
 }
-/* Keeping the table header from scrolling with the body breaks the column sizing. Explicitly set them. */
-/* Scroll bar also borks things. Width is fudged a bit to keep things close. Proably use Datatables in the future. */
-.rankingsTable thead tr {
-  width: 99%;
-  display: block;
-  border: 1px solid black;
-}
-.rankingsTable tbody {
-  width: 101%;
+.rankingsTable {
   display: block;
   height: 1000px;
-  overflow:auto;
-}
-.rankingsTable thead tr th {
-  width: 7%;
-}
-.rankingsTable thead tr th:nth-child(2) {
-  width: 20%;
-}
-.rankingsTable tbody tr td {
-  width: 7%;
-}
-.rankingsTable tbody tr td:nth-child(2) {
-  width: 20%;
 }
 .posTable {
   display:block;
@@ -358,6 +337,7 @@ export default {
   height:300px;
   width: 250px;
 }
+/* account for gigantic names */
 .posTable tbody tr td:first-child {
   width: 90%;
 }
@@ -365,13 +345,16 @@ export default {
   display: flex;
   justify-content: center;
 }
-.search results{
+.search results {
   min-height: 100px;
 }
-table, td {
+table, tr, td {
   border: 1px solid black;
   border-collapse: collapse;
   background-color: #ffffff; /* keep this in case the page bg color is changed */
+}
+th {
+  padding: 1px 2px 1px 2px;
 }
 td {
   padding: 1px 2px 1px 2px;
